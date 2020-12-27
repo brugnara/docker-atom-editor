@@ -20,16 +20,16 @@ docker volume create --name x11tmp
 docker rm -f video-dummy
 
 docker run -d \
-	--name video-dummy \
-	-v x11tmp:/tmp/.X11-unix \
-	brugnara/video-dummy
+  --name video-dummy \
+  -v x11tmp:/tmp/.X11-unix \
+  brugnara/video-dummy
 
 # OR
 
 docker run -d \
-	--name video-dummy \
-	-v x11tmp:/tmp/.X11-unix \
-	kcollins/xvfb:latest :1 -screen 0 1920x1080x24
+  --name video-dummy \
+  -v x11tmp:/tmp/.X11-unix \
+  kcollins/xvfb:latest :1 -screen 0 1920x1080x24
 
 # then:
 
@@ -38,10 +38,10 @@ docker volume create --name atom-home
 docker rm -f atom
 
 docker run -d \
-	--name atom \
-	-v x11tmp:/tmp/.X11-unix/ \
+  --name atom \
+  -v x11tmp:/tmp/.X11-unix/ \
   -v atom-home:/home/atom/.atom \
-	-e DISPLAY=:1 \
+  -e DISPLAY=:1 \
   brugnara/atom
 ```
 
