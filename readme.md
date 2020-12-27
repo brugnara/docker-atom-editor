@@ -1,9 +1,18 @@
-Docker Atom.io
+Docker Headless Atom.io
 ==================
+
+## Why?
+
+There are many reasons for starting an app headless. You may think that
+having an editor headless is almost useless and I couldn't agree more.
+
+But, check [go-live](https://github.com/brugnara/go-live) and you'll better
+understand what's behind.
 
 ## How to use
 
-You'll need [video-dummy](https://github.com/brugnara/video-dummy).
+You'll need [video-dummy](https://github.com/brugnara/video-dummy) or
+[Xvfb](https://github.com/kcollins/xvfb).
 
 ```bash
 docker volume create --name x11tmp
@@ -14,6 +23,15 @@ docker run -d \
 	--name video-dummy \
 	-v x11tmp:/tmp/.X11-unix \
 	brugnara/video-dummy
+
+# OR
+
+docker run -d \
+	--name video-dummy \
+	-v x11tmp:/tmp/.X11-unix \
+	kcollins/xvfb:latest :1 -screen 0 1920x1080x24
+
+# then:
 
 docker volume create --name atom-home
 
